@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>todo bacon</title>
+    <script src="https://sateraito-apps-workflow2.appspot.com/static/jquery.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bacon.js/0.7.84/Bacon.js"></script>
+    <script type="text/javascript">
+$(function() {
+  $('#new-task')
+  .asEventStream('keyup')
+  .filter(function(e) {return e.keyCode == 13})
+  .onValue(function(e) {
+    $target = $(e.target);
+    $target.parent('li').before($('<li></li>').text($target.val()));
+    $target.val('');
+  })
+})
+    </script>
+  </head>
+  <body>
+    <ul id="todo-list">
+      <li><input type="text" name="new-task" id="new-task" /></li>
+    </ul>
+  </body>
+</html>
